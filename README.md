@@ -12,7 +12,16 @@
       - [**2. Evaluación financiera y detección de riesgos**](#2-evaluación-financiera-y-detección-de-riesgos)
     - [Objetivo](#objetivo)
     - [**Actualización y acceso a los datos**](#actualización-y-acceso-a-los-datos)
-
+  - [Paso 2: Explorar y evaluar los datos (EDA)](#paso-2-explorar-y-evaluar-los-datos-eda)
+    - [Resultados de la exploración](#resultados-de-la-exploración)
+      - [**1. Tabla `cards_data`**](#1-tabla-cards_data)
+      - [**2. Tabla `users_data`**](#2-tabla-users_data)
+      - [**3. Tabla `transactions_data`**](#3-tabla-transactions_data)
+    - [Pasos necesarios para la limpieza de datos](#pasos-necesarios-para-la-limpieza-de-datos)
+      - [**Manejo de valores faltantes**](#manejo-de-valores-faltantes)
+      - [**Eliminación de duplicados**](#eliminación-de-duplicados)
+      - [**Corrección de errores de formato**](#corrección-de-errores-de-formato)
+      - [**Validaciones lógicas**](#validaciones-lógicas)
 
 ## Paso 1: Alcance del proyecto y captura de datos
 
@@ -118,3 +127,59 @@ El propósito de este proyecto es la construcción de una tubería de datos que 
 ### **Actualización y acceso a los datos**
 
 Se propone una frecuencia de actualización diaria para garantizar que los datos procesados estén actualizados y disponibles para análisis posteriores. El pipeline será diseñado para automatizar este proceso, utilizando herramientas como **AWS Glue** y **DBT**.
+
+## Paso 2: Explorar y evaluar los datos (EDA)
+
+Para realizar la exploración de los datos, se optó por trabajar en un notebook de Jupyter, permitiendo verificar el estado de los datos directamente desde la fuente. El notebook utilizado para el análisis se encuentra disponible en la carpeta **eda**.
+
+### Resultados de la exploración
+
+A continuación, se detallan los hallazgos de la exploración de las tres tablas principales del dataset:
+
+#### **1. Tabla `cards_data`**
+
+- No se encontraron valores nulos en ninguna columna.
+- No se detectaron registros duplicados.
+- Todas las columnas cumplen con el tipo de dato esperado.
+- No se identificaron problemas estructurales o de calidad en esta tabla.
+
+#### **2. Tabla `users_data`**
+
+- Al igual que la tabla `cards_data`, no presenta valores nulos ni duplicados.
+- Los datos cumplen con los formatos necesarios, incluyendo los campos numéricos y categóricos.
+- La tabla está en condiciones óptimas para continuar con los siguientes pasos del proyecto.
+
+#### **3. Tabla `transactions_data`**
+
+- A pesar del volumen de datos (más de 13 millones de registros), la tabla está en buenas condiciones generales.
+- No se encontraron registros duplicados.
+- Las columnas relevantes no contienen valores nulos; sin embargo, algunas columnas opcionales presentan valores faltantes permitidos.
+- Todas las columnas cumplen con los formatos esperados.
+
+---
+
+### Pasos necesarios para la limpieza de datos
+
+Aunque las tablas presentan una calidad aceptable, se sugieren los siguientes pasos de limpieza para asegurar la consistencia y preparar los datos para su uso en el pipeline:
+
+#### **Manejo de valores faltantes**
+
+- Imputar valores faltantes en columnas numéricas (e.g., rellenar con `0` en caso de ser apropiado).
+- Completar valores categóricos faltantes (e.g., `card_type`, `merchant_state`) utilizando una categoría estándar como `"desconocido"`.
+
+#### **Eliminación de duplicados**
+
+- Remover registros duplicados en cada tabla, verificando los identificadores únicos.
+
+#### **Corrección de errores de formato**
+
+- Uniformar las fechas al formato estándar `YYYY-MM-DD` en las tablas `transactions_data` y `cards_data`.
+- Validar que los valores numéricos (e.g., `amount`, `credit_score`) no contengan caracteres inválidos.
+
+#### **Validaciones lógicas**
+
+- Asegurar la coherencia entre las columnas `current_age` y `retirement_age` en la tabla `users_data`.
+
+---
+
+Estos son algunos pasos que podrían garantizar que los datos estén completamente preparados para ser utilizados en las siguientes etapas del proyecto. Estos pasos se encuentran representados en los diagramas del siguiente paso.

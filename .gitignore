@@ -6,6 +6,9 @@ __pycache__/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# VS code
+.vscode
+
 
 # Environments
 .env
@@ -15,3 +18,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Test data
+data/
