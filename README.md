@@ -74,24 +74,10 @@ Ayuda a evaluar el perfil financiero del cliente y detectar posibles riesgos aso
 
 ### **Motivación para la selección de estos datos**
 
-La principal motivación para utilizar este conjunto de datos es su relación con posibles procesos dentro de Nequi, ya que se busca utilizar datos relacionados con la banca y transacciones. Estos conjuntos de datos fueron seleccionados por su relevancia para los objetivos del proyecto, los cuales incluyen:
-
-1. **Análisis de comportamiento del cliente:**
-   - Mejorar la segmentación de clientes.
-   - Identificar patrones que puedan predecir churn (deserción de clientes).
-   - Ofrecer recomendaciones personalizadas.
-
-2. **Evaluación financiera y riesgos:**
-   - Detectar anomalías en transacciones y tarjetas comprometidas.
-   - Identificar clientes con alto riesgo financiero.
-
-3. **Casos de uso final:**  
-   Los datos recopilados se prepararán para su análisis mediante herramientas de inteligencia de negocios (BI) y se integrarán en un modelo de datos centralizado para soporte en decisiones estratégicas.
+La principal motivación para utilizar este conjunto de datos es su relación con posibles procesos dentro de Nequi, ya que se busca utilizar datos relacionados con la banca y transacciones.
 
 **Formato de los datos:**  
 Los archivos están en formato CSV y serán almacenados en un bucket de **AWS S3** para facilitar su procesamiento y acceso mediante servicios como **AWS Glue** y **Athena**.
-
-
 
 ### Casos de uso final de los datos
 
