@@ -1,0 +1,142 @@
+version: 2
+
+sources:
+  - name: processed
+    schema: public
+    tables:
+      - name: transactions
+        description: "Datos procesados de transacciones."
+        columns:
+          - name: transaction_id
+            description: "Identificador único para cada transacción."
+          - name: client_id
+            description: "Identificador que vincula la transacción a un usuario."
+          - name: card_id
+            description: "Identificador que vincula la transacción a una tarjeta."
+          - name: merchant_id
+            description: "Identificador del comercio involucrado en la transacción."
+          - name: mcc
+            description: "Código de categoría del comercio."
+          - name: amount
+            description: "Monto de la transacción en dólares estadounidenses (USD)."
+          - name: transaction_date
+            description: "Fecha y hora de la transacción."
+
+      - name: users
+        description: "Datos procesados de los usuarios."
+        columns:
+          - name: user_id
+            description: "Identificador único para cada usuario."
+          - name: name
+            description: "Nombre completo del usuario."
+          - name: email
+            description: "Correo electrónico del usuario."
+          - name: age
+            description: "Edad del usuario."
+          - name: per_capita_income
+            description: "Ingreso per cápita del usuario en USD."
+          - name: yearly_income
+            description: "Ingreso anual del usuario en USD."
+          - name: total_debt
+            description: "Deuda total del usuario en USD."
+
+      - name: cards
+        description: "Datos procesados de las tarjetas."
+        columns:
+          - name: card_id
+            description: "Identificador único para cada tarjeta."
+          - name: client_id
+            description: "Identificador que vincula la tarjeta a un usuario."
+          - name: card_number
+            description: "Número de tarjeta cifrado."
+          - name: cvv
+            description: "Código de verificación de la tarjeta (cifrado)."
+          - name: credit_limit
+            description: "Límite de crédito de la tarjeta en USD."
+          - name: expiration_date
+            description: "Fecha de expiración de la tarjeta."
+          - name: account_open_date
+            description: "Fecha en la que se abrió la cuenta de la tarjeta."
+          - name: card_type
+            description: "Tipo de tarjeta (por ejemplo, débito, crédito)."
+
+models:
+  - name: transactions
+    description: "Datos de transacciones limpiados y transformados."
+    columns:
+      - name: transaction_id
+        description: "Identificador único para cada transacción."
+      - name: client_id
+        description: "Identificador que vincula la transacción a un usuario."
+      - name: card_id
+        description: "Identificador que vincula la transacción a una tarjeta."
+      - name: merchant_id
+        description: "Identificador del comercio involucrado en la transacción."
+      - name: mcc
+        description: "Código de categoría del comercio."
+      - name: amount
+        description: "Monto de la transacción en USD."
+      - name: transaction_date
+        description: "Fecha y hora de la transacción."
+
+  - name: users
+    description: "Datos de usuarios limpiados y transformados."
+    columns:
+      - name: user_id
+        description: "Identificador único para cada usuario."
+      - name: name
+        description: "Nombre completo del usuario."
+      - name: email
+        description: "Correo electrónico del usuario."
+      - name: age
+        description: "Edad del usuario."
+      - name: per_capita_income
+        description: "Ingreso per cápita del usuario en USD."
+      - name: yearly_income
+        description: "Ingreso anual del usuario en USD."
+      - name: total_debt
+        description: "Deuda total del usuario en USD."
+
+  - name: cards
+    description: "Datos de tarjetas limpiados y transformados."
+    columns:
+      - name: card_id
+        description: "Identificador único para cada tarjeta."
+      - name: client_id
+        description: "Identificador que vincula la tarjeta a un usuario."
+      - name: card_number
+        description: "Número de tarjeta cifrado."
+      - name: cvv
+        description: "Código de verificación de la tarjeta (cifrado)."
+      - name: credit_limit
+        description: "Límite de crédito de la tarjeta en USD."
+      - name: expiration_date
+        description: "Fecha de expiración de la tarjeta."
+      - name: account_open_date
+        description: "Fecha en la que se abrió la cuenta de la tarjeta."
+      - name: card_type
+        description: "Tipo de tarjeta (por ejemplo, débito, crédito)."
+
+  - name: aggregated_data
+    description: "Datos agregados combinando transacciones, usuarios y tarjetas."
+    columns:
+      - name: transaction_id
+        description: "Identificador único para cada transacción."
+      - name: amount
+        description: "Monto de la transacción en USD."
+      - name: transaction_date
+        description: "Fecha y hora de la transacción."
+      - name: user_id
+        description: "Identificador único para cada usuario."
+      - name: user_name
+        description: "Nombre completo del usuario."
+      - name: email
+        description: "Correo electrónico del usuario."
+      - name: yearly_income
+        description: "Ingreso anual del usuario en USD."
+      - name: card_id
+        description: "Identificador único para cada tarjeta."
+      - name: credit_limit
+        description: "Límite de crédito de la tarjeta en USD."
+      - name: card_type
+        description: "Tipo de tarjeta (por ejemplo, débito, crédito)."
